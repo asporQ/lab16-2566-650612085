@@ -131,7 +131,8 @@ export const DELETE = async (request) => {
   }
   //perform removing student from DB. You can choose from 2 choices
   //1. use array filter method
-  DB.students = DB.students.filter((std) => DB.studentId !== parseResult);
+  let x = DB.students;
+  DB.students = DB.students.filter((std) => DB.studentId !== body.studentId);
 
   //or 2. use splice array method
   // DB.students.splice(...)
@@ -139,5 +140,6 @@ export const DELETE = async (request) => {
   return NextResponse.json({
     ok: true,
     message: `Student Id ${body.studentId} has been deleted`,
+    students: x,
   });
 };
